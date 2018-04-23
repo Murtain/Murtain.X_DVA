@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Murtain.OAuth2.Configuration;
 
 namespace Murtain.OAuth2
 {
@@ -23,6 +24,14 @@ namespace Murtain.OAuth2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryClients(Clients.GetClients())
+                .AddInMemoryApiResources(Resources.GetResources())
+                .AddTestUsers(Users.GetUsers());
+
+
             services.AddMvc();
         }
 
@@ -34,6 +43,7 @@ namespace Murtain.OAuth2
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseIdentityServer();
             app.UseMvc();
         }
     }
