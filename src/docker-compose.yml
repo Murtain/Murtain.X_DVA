@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  murtain.oauth2:
+    image: murtain.oauth2
+    build:
+      context: .
+      dockerfile: Murtain.OAuth2/Dockerfile
+
+  murtain.oauth2.admin:
+    image: murtain.oauth2.admin
+    build:
+      context: .
+      dockerfile: Murtain.OAuth2.Admin/Dockerfile
+
+
+  murtain.configuration:
+    image: murtain.configuration
+    build:
+      context: .
+      dockerfile: Murtain.Configuration/Dockerfile
+
+
+  murtain.gateway:
+    image: murtain.gateway
+    build:
+      context: .
+      dockerfile: Murtain.Gateway/Dockerfile
+
+
+  murtain.resource.users:
+    image: murtain.resource.users
+    build:
+      context: .
+      dockerfile: Murtain.Resource.Users/Dockerfile
+
+
+  murtain.resource.message:
+    image: murtain.resource.message
+    build:
+      context: .
+      dockerfile: Murtain.Resource.Message/Dockerfile
+
+
+  murtain.resource.contract:
+    image: murtain.resource.contract
+    build:
+      context: .
+      dockerfile: Murtain.Resource.Contract/Dockerfile
+
+
+  murtain.resource.story:
+    image: murtain.resource.story
+    build:
+      context: .
+      dockerfile: Murtain.Resource.Story/Dockerfile
+
+
+  murtain.open:
+    image: murtain.open
+    build:
+      context: .
+      dockerfile: Murtain.Open/Dockerfile
+

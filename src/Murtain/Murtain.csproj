@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Interceptor\" />
+    <Folder Include="Event\" />
+    <Folder Include="Exception\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Cache\" />
+    <Folder Include="Logger\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
+</Project>
