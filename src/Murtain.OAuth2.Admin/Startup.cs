@@ -21,6 +21,25 @@ namespace Murtain.OAuth2.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.SignInScheme = "Cookies";
+                options.Authority = "http://localhost:5000";
+                options.RequireHttpsMetadata = false;
+
+                options.ClientId = "client.mvc.admin";
+                options.ClientSecret = "secret";
+
+                options.SaveTokens = true;
+            });
+
             services.AddMvc();
         }
 
@@ -38,7 +57,7 @@ namespace Murtain.OAuth2.Admin
             }
 
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -14,7 +14,7 @@ namespace Murtain.OAuth2.Configuration
             {
                  new TestUser(){
                      SubjectId = "sub-1061306002",
-                     Username = "alice",
+                     Username = "alice@qq.com",
                      Password = "alice"
                  }
             };

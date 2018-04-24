@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Murtain.OAuth2.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Murtain.OAuth2.Admin.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()

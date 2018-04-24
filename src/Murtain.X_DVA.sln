@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Components", "Core Components", "{31F9CF08-1C12-4C79-B99A-745A393BDF54}"
 EndProject
@@ -11,31 +11,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorizat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{EBCC993B-10FB-42D1-BDF0-F72D2BD7C654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2", "Murtain.OAuth2\Murtain.OAuth2.csproj", "{79AE5C3B-5D61-40BE-9D48-83F43C110C9A}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1B44FB51-D7CF-4D2A-B68B-61ECA2634475}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2.Admin", "Murtain.OAuth2.Admin\Murtain.OAuth2.Admin.csproj", "{56D4A15D-CB63-4DE2-9598-4D8184D34837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.OAuth2.Admin", "Murtain.OAuth2.Admin\Murtain.OAuth2.Admin.csproj", "{56D4A15D-CB63-4DE2-9598-4D8184D34837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Configuration", "Murtain.Configuration\Murtain.Configuration.csproj", "{DF443E7B-C1D1-4F87-8D4F-60AC767A85A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Configuration", "Murtain.Configuration\Murtain.Configuration.csproj", "{DF443E7B-C1D1-4F87-8D4F-60AC767A85A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Gateway", "Murtain.Gateway\Murtain.Gateway.csproj", "{3CACE0C7-9DED-4637-9D66-BF6C4E3C2A90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Gateway", "Murtain.Gateway\Murtain.Gateway.csproj", "{3CACE0C7-9DED-4637-9D66-BF6C4E3C2A90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain", "Murtain\Murtain.csproj", "{48759D80-EC6F-4E59-8900-A7064B7BF5D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain", "Murtain\Murtain.csproj", "{48759D80-EC6F-4E59-8900-A7064B7BF5D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.EntityFramework", "Murtain.EntityFramework\Murtain.EntityFramework.csproj", "{FB40B19F-2E37-4D3F-9E5D-A04007B81BE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.EntityFramework", "Murtain.EntityFramework\Murtain.EntityFramework.csproj", "{FB40B19F-2E37-4D3F-9E5D-A04007B81BE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.AutoMapper", "Murtain.AutoMapper\Murtain.AutoMapper.csproj", "{B9CB17CF-6125-4AC9-A284-5E467B4C5BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.AutoMapper", "Murtain.AutoMapper\Murtain.AutoMapper.csproj", "{B9CB17CF-6125-4AC9-A284-5E467B4C5BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Resource.Users", "Murtain.Resource.Users\Murtain.Resource.Users.csproj", "{DAF4F627-8668-4EF0-925F-602E29467355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Resource.Users", "Murtain.Resource.Users\Murtain.Resource.Users.csproj", "{DAF4F627-8668-4EF0-925F-602E29467355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Resource.Message", "Murtain.Resource.Message\Murtain.Resource.Message.csproj", "{7F5D3AC7-880F-4E70-8611-B0F6B79AB313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Resource.Message", "Murtain.Resource.Message\Murtain.Resource.Message.csproj", "{7F5D3AC7-880F-4E70-8611-B0F6B79AB313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Resource.Contract", "Murtain.Resource.Contract\Murtain.Resource.Contract.csproj", "{0A01E79A-7AD2-43E5-8D9D-BA0749B3F573}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Resource.Contract", "Murtain.Resource.Contract\Murtain.Resource.Contract.csproj", "{0A01E79A-7AD2-43E5-8D9D-BA0749B3F573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Resource.Story", "Murtain.Resource.Story\Murtain.Resource.Story.csproj", "{C1BEB867-BA9A-45F3-8897-C2936DC1C54F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Resource.Story", "Murtain.Resource.Story\Murtain.Resource.Story.csproj", "{C1BEB867-BA9A-45F3-8897-C2936DC1C54F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.Open", "Murtain.Open\Murtain.Open.csproj", "{333DEAC3-AE12-453D-A878-195DA3D90DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Open", "Murtain.Open\Murtain.Open.csproj", "{333DEAC3-AE12-453D-A878-195DA3D90DE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2", "Murtain.OAuth2\Murtain.OAuth2.csproj", "{010A7786-DA8A-400F-99C9-0D862EA17355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{79AE5C3B-5D61-40BE-9D48-83F43C110C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79AE5C3B-5D61-40BE-9D48-83F43C110C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79AE5C3B-5D61-40BE-9D48-83F43C110C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79AE5C3B-5D61-40BE-9D48-83F43C110C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B44FB51-D7CF-4D2A-B68B-61ECA2634475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B44FB51-D7CF-4D2A-B68B-61ECA2634475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B44FB51-D7CF-4D2A-B68B-61ECA2634475}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -95,12 +91,15 @@ Global
 		{333DEAC3-AE12-453D-A878-195DA3D90DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{333DEAC3-AE12-453D-A878-195DA3D90DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{333DEAC3-AE12-453D-A878-195DA3D90DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010A7786-DA8A-400F-99C9-0D862EA17355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010A7786-DA8A-400F-99C9-0D862EA17355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010A7786-DA8A-400F-99C9-0D862EA17355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010A7786-DA8A-400F-99C9-0D862EA17355}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{79AE5C3B-5D61-40BE-9D48-83F43C110C9A} = {AFFC6795-318B-424F-AED8-92E29C86EC4C}
 		{56D4A15D-CB63-4DE2-9598-4D8184D34837} = {AFFC6795-318B-424F-AED8-92E29C86EC4C}
 		{DF443E7B-C1D1-4F87-8D4F-60AC767A85A9} = {EBCC993B-10FB-42D1-BDF0-F72D2BD7C654}
 		{3CACE0C7-9DED-4637-9D66-BF6C4E3C2A90} = {EBCC993B-10FB-42D1-BDF0-F72D2BD7C654}
@@ -112,6 +111,7 @@ Global
 		{0A01E79A-7AD2-43E5-8D9D-BA0749B3F573} = {026077CE-FDE8-4889-B4E4-433B12120069}
 		{C1BEB867-BA9A-45F3-8897-C2936DC1C54F} = {026077CE-FDE8-4889-B4E4-433B12120069}
 		{333DEAC3-AE12-453D-A878-195DA3D90DE6} = {EBCC993B-10FB-42D1-BDF0-F72D2BD7C654}
+		{010A7786-DA8A-400F-99C9-0D862EA17355} = {AFFC6795-318B-424F-AED8-92E29C86EC4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {55F87001-C6A3-4F1F-8D46-60C64853019F}

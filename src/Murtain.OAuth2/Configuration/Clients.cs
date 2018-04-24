@@ -14,19 +14,21 @@ namespace Murtain.OAuth2.Configuration
             return new List<Client>()
             {
                 new Client(){
-                    ClientName = "授权服务器管理控台",
-                    ClientId = "client.credentials.authrize.admin",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientId = "client.mvc.admin",
+                    AllowedGrantTypes = GrantTypes.Implicit,
                     ClientSecrets = {
                         new Secret("secret".Sha256())
                     },
                     RequireClientSecret = true,
+
+                    RedirectUris = { "http://localhost:5001/signin-oidc" },
+                    PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc"},
+
                     AllowedScopes = {
                         "resource_authrize"
                     }
                 },
                  new Client(){
-                    ClientName = "X-DVA客户端",
                     ClientId = "client.resourceowner.x-dva",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     RequireClientSecret = false,
