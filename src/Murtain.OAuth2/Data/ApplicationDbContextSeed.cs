@@ -12,16 +12,16 @@ namespace Murtain.OAuth2.Data
     {
 
         private UserManager<ApplicationUser> _userManager;
-        private RoleManager<IdentityRole<string>> _roleManager;
+        private RoleManager<IdentityRole> _roleManager;
 
         public async Task SeedAsync(ApplicationDbContext context, IServiceProvider serviceProvider)
         {
 
-            if (!context.UserRoles.Any())
+            if (!context.Roles.Any())
             {
-                _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<string>>>();
+                _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                var role = new IdentityRole<string>()
+                var role = new IdentityRole()
                 {
                     Name = "Administrators",
                     NormalizedName = "Administrators",
@@ -43,9 +43,10 @@ namespace Murtain.OAuth2.Data
                     Avatar = "http://video.jessetalk.cn/files/user/2018/04-24/205959f1439c148108.jpg"
                 };
 
-                await _userManager.AddToRoleAsync(defaultUser, "Administrators");
                 await _userManager.CreateAsync(defaultUser, "123456");
+                await _userManager.AddToRoleAsync(defaultUser, "Administrators");
             }
+
         }
     }
 }

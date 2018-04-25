@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Murtain.OAuth2.Models.ManageViewModels
+namespace Murtain.OAuth2.Models.Manage
 {
     public class TwoFactorAuthenticationViewModel
     {

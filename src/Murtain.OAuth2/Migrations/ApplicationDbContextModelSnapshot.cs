@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Murtain.OAuth2.Data;
 using System;
 
-namespace Murtain.OAuth2.Data.Migrations
+namespace Murtain.OAuth2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

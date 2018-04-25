@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Murtain.OAuth2.Models;
 using Microsoft.AspNetCore.Authorization;
+using Murtain.OAuth2.Configuration;
 
 namespace Murtain.OAuth2.Controllers
 {
+    [SecurityHeaders]
     [Authorize]
     public class HomeController : Controller
     {

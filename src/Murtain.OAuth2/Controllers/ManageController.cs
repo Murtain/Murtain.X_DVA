@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Murtain.OAuth2.Models;
-using Murtain.OAuth2.Models.ManageViewModels;
+using Murtain.OAuth2.Models.Manage;
 using Murtain.OAuth2.Services;
 
 namespace Murtain.OAuth2.Controllers

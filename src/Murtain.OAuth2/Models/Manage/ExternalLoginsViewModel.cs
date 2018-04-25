@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace Murtain.OAuth2.Models.ManageViewModels
+namespace Murtain.OAuth2.Models.Manage
 {
     public class ExternalLoginsViewModel
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Components", "Core Components", "{31F9CF08-1C12-4C79-B99A-745A393BDF54}"
 EndProject
@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Resource.Story", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.Open", "Murtain.Open\Murtain.Open.csproj", "{333DEAC3-AE12-453D-A878-195DA3D90DE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Murtain.OAuth2", "Murtain.OAuth2\Murtain.OAuth2.csproj", "{010A7786-DA8A-400F-99C9-0D862EA17355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Murtain.OAuth2", "Murtain.OAuth2\Murtain.OAuth2.csproj", "{010A7786-DA8A-400F-99C9-0D862EA17355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
