@@ -2,28 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <UserSecretsId>aspnet-Murtain.OAuth2-F10D7207-981A-4C30-A6EB-F5CAFE34424C</UserSecretsId>
+    <UserSecretsId>aspnet-WebApplication1-40CB670C-04EE-4882-898D-092E2F583441</UserSecretsId>
   </PropertyGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="IdentityServer4" Version="2.2.0" />
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
-    <PackageReference Include="MySql.Data" Version="8.0.11" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

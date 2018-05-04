@@ -13,6 +13,8 @@ using Murtain.OAuth2.Models;
 using Murtain.OAuth2.Services;
 using Murtain.OAuth2.Configuration;
 using IdentityServer4.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace Murtain.OAuth2
 {
@@ -37,6 +39,25 @@ namespace Murtain.OAuth2
                   .AddTestUsers(Users.GetUsers())
                   .Services.AddScoped<IProfileService, ProfileService>()
                   ;
+            // SignInManager.IsSignedIn(User) == false, yet User.Identity.IsAuthenticated == true
+            // https://github.com/aspnet/Security/issues/1538
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.SignInScheme = "Cookies";
+                options.Authority = "http://localhost:5000";
+                options.RequireHttpsMetadata = false;
+
+                options.ClientId = "client.authentication";
+                options.ClientSecret = "secret";
+
+                options.SaveTokens = true;
+            });
 
 
             services.AddDbContext<ApplicationDbContext>(options =>

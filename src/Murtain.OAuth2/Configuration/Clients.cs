@@ -14,6 +14,18 @@ namespace Murtain.OAuth2.Configuration
             return new List<Client>()
             {
                 new Client(){
+                    ClientId = "client.authentication",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    ClientSecrets = {
+                        new Secret("secret".Sha256())
+                    },
+                    RequireClientSecret = true,
+
+                    AllowedScopes = {
+                        "resource_authrize"
+                    }
+                },
+                new Client(){
                     ClientId = "client.mvc.admin",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     ClientSecrets = {
