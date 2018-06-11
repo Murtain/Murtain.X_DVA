@@ -1,85 +1,65 @@
-﻿@using System.Collections.Generic
-@using System.Linq
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@model LoginViewModel
-@inject SignInManager<ApplicationUser> SignInManager
-
-<div class="login-page">
-    <div class="page-header">
-        <h1>Login</h1>
-    </div>
-
-    @Html.Partial("_ValidationSummary")
-
-    <div class="row">
-
-        @if (Model.EnableLocalLogin)
-        {
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Local Login</h3>
-                    </div>
-                    <div class="panel-body">
-
-                        <form asp-route="Login">
-                            <input type="hidden" asp-for="ReturnUrl" />
-
-                            <div class="form-group">
-                                <label asp-for="Username"></label>
-                                <input class="form-control" placeholder="Username" asp-for="Username" autofocus>
-                                <span asp-validation-for="Username" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Password"></label>
-                                <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            @if (Model.AllowRememberLogin)
-                            {
-                                <div class="form-group login-remember">
-                                    <label asp-for="RememberLogin">
-                                        <input asp-for="RememberLogin">
-                                        <strong>Remember My Login</strong>
-                                    </label>
-                                </div>
-                            }
-                            <div class="form-group">
-                                <button class="btn btn-primary" name="button" value="login">Login</button>
-                            </div>
-                        </form>
-                        <form asp-route="Login">
-                            <input type="hidden" asp-for="ReturnUrl" />
-                            <div class="form-group">
-                                <button class="btn btn-default" name="button" value="cancel">Cancel</button>
-                            </div>
-                            <div class="form-group">
-                                <a asp-action="ForgotPassword">Forgot your password?</a>
-                                <span>|</span>
-                                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                            </div>
-                        </form>
-                    </div>
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "账号登录";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+<div class="x-form-wrapper x-form-container">
+    <div class="animated ">
+        <form name="form" method="post" asp-route="Login">
+            <div class="form-group">
+                <div class="x-brand-conatiner">
                 </div>
             </div>
-        }
-
-        @if (Model.VisibleExternalProviders.Any())
-        {
-            <div class="col-md-6 col-sm-6 external-providers">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">External Login</h3>
+            <div class="form-group">
+                <div class="x-title">X-DVA ID</div>
+            </div>
+            <div class="form-group">
+                @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+                {
+                    <div>
+                        <span class="x-warning-icon">There are no login schemes configured for this client.</span>
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-inline">
+                }
+
+                @if (ViewContext.ModelState.Any(x => x.Value.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid))
+                {
+                    <span class="x-warning-icon">@string.Join(",", ViewContext.ModelState.Values.FirstOrDefault()?.Errors.Select(x => x.ErrorMessage))</span>
+                }
+
+                <div class="x-input">
+                    <span class="x-icon"><i>手机号/邮箱</i></span>
+                    <input type="text" placeholder="手机号/邮箱" name="username" asp-for="Username" autofocus />
+                </div>
+                <div class="x-input x-password">
+                    <span class="x-icon"><i>密码</i></span>
+                    <input type="password" placeholder="密码" name="password" autocomplete="off" asp-for="Password" />
+                </div>
+                <div class="x-btn-link">
+                    @if (Model.AllowRememberLogin)
+                    {
+                        <input type="checkbox" class="x-check-box" name="RememberMe" value="true" asp-for="RememberLogin" />
+                        <a asp-for="RememberLogin" class="x-check-lable">
+                            7天内自动登录
+                        </a>
+                    }
+                    <a href="/account/validate-id?returnUrl=@(Model.ReturnUrlEncode)&type=1">立即注册</a>
+                    <a href="/account/validate-id?returnUrl=@(Model.ReturnUrlEncode)&type=2" class="x-split">忘记密码</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="x-btn-submit" type="submit" name="button" value="login">登录</button>
+            </div>
+            <div class="x-line"></div>
+            <div class="form-group">
+                <ul>
+                    <li>
+                        <ul class="x-login-three">
+                            <li class="x-text">其他账号登录</li>
                             @foreach (var provider in Model.VisibleExternalProviders)
                             {
-                                <li>
-                                    <a class="btn btn-default"
-                                       asp-controller="External"
-                                       asp-action="Challenge"
+                                <li class="">
+                                    <a class="x-extenal-link"
+                                       asp-action="ExternalLogin"
                                        asp-route-provider="@provider.AuthenticationScheme"
                                        asp-route-returnUrl="@Model.ReturnUrl">
                                         @provider.DisplayName
@@ -87,92 +67,13 @@
                                 </li>
                             }
                         </ul>
-                    </div>
-                </div>
+                    </li>
+                    <li class="x-telphone-login">
+                        <button class="x-btn-link-cancel" type="submit" name="button" value="login-cancel">取消登录</button>
+                        <span><i class="x-arrow"></i></span>
+                    </li>
+                </ul>
             </div>
-        }
-
-        @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
-        {
-            <div class="alert alert-warning">
-                <strong>Invalid login request</strong>
-                There are no login schemes configured for this client.
-            </div>
-        }
+        </form>
     </div>
 </div>
-@*<div class="row">
-        <div class="col-md-4">
-            <section>
-                <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Username"></label>
-                        <input asp-for="Username" class="form-control" />
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label asp-for="RememberLogin">
-                                <input asp-for="RememberLogin" />
-                                @Html.DisplayNameFor(m => m.RememberLogin)
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default">Log in</button>
-                    </div>
-                    <div class="form-group">
-                        <p>
-                            <a asp-action="ForgotPassword">Forgot your password?</a>
-                        </p>
-                        <p>
-                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                        </p>
-                    </div>
-                </form>
-            </section>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-            <section>
-                <h4>Use another service to log in.</h4>
-                <hr />
-                @{
-                    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-                    if (loginProviders.Count == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                for details on setting up this ASP.NET application to support logging in via external services.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                            <div>
-                                <p>
-                                    @foreach (var provider in loginProviders)
-                                    {
-                                        <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
-                                    }
-                                </p>
-                            </div>
-                        </form>
-                    }
-                }
-            </section>
-        </div>
-    </div>*@
-
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}

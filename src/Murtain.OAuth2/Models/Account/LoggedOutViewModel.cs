@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Murtain.OAuth2.Models.Account
+﻿
+namespace Murtain.OAuth2.Models
 {
     public class LoggedOutViewModel
     {
@@ -11,7 +7,7 @@ namespace Murtain.OAuth2.Models.Account
         public string ClientName { get; set; }
         public string SignOutIframeUrl { get; set; }
 
-        public bool AutomaticRedirectAfterSignOut { get; set; } = false;
+        public bool AutomaticRedirectAfterSignOut { get; set; }
 
         public string LogoutId { get; set; }
         public bool TriggerExternalSignout => ExternalAuthenticationScheme != null;

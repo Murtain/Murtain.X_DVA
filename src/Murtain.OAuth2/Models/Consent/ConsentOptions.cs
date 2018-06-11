@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Murtain.OAuth2.Models.Consent
+﻿namespace Murtain.OAuth2.Configuration
 {
     public class ConsentOptions
     {

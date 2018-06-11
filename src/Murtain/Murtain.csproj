@@ -5,14 +5,64 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interceptor\" />
-    <Folder Include="Event\" />
-    <Folder Include="Exception\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Cache\" />
-    <Folder Include="Logger\" />
-    <Folder Include="Configuration\" />
-    <Folder Include="Middleware\" />
+    <Compile Remove="Caching\**" />
+    <Compile Remove="Collections\**" />
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="Dependency\**" />
+    <Compile Remove="Domain\**" />
+    <Compile Remove="Email\**" />
+    <Compile Remove="Events\**" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="GlobalSetting\**" />
+    <Compile Remove="Logger\**" />
+    <Compile Remove="Middleware\**" />
+    <Compile Remove="Runtime\**" />
+    <Compile Remove="Session\**" />
+    <EmbeddedResource Remove="Caching\**" />
+    <EmbeddedResource Remove="Collections\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Dependency\**" />
+    <EmbeddedResource Remove="Domain\**" />
+    <EmbeddedResource Remove="Email\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="GlobalSetting\**" />
+    <EmbeddedResource Remove="Logger\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <EmbeddedResource Remove="Runtime\**" />
+    <EmbeddedResource Remove="Session\**" />
+    <None Remove="Caching\**" />
+    <None Remove="Collections\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="Dependency\**" />
+    <None Remove="Domain\**" />
+    <None Remove="Email\**" />
+    <None Remove="Events\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="GlobalSetting\**" />
+    <None Remove="Logger\**" />
+    <None Remove="Middleware\**" />
+    <None Remove="Runtime\**" />
+    <None Remove="Session\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Constants.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
+    <PackageReference Include="Dora.Interception" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Scrutor" Version="2.2.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
   </ItemGroup>
 
 </Project>

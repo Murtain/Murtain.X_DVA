@@ -1,0 +1,48 @@
+﻿@model GrantsViewModel
+@{
+    Layout = "_Layout";
+}
+<div class="section x-section permissions  x-border-bottom-none">
+    <h2 class="x-title">应用授权</h2>
+    <div class="x-detail">
+        @if (Model.Grants.Any() == false)
+        {
+            <div class="col-sm-8">
+                <div class="alert alert-info">
+                    You have not given permission to any applications
+                </div>
+            </div>
+        }
+        @foreach (var grant in Model.Grants)
+        {
+            <div class="permission">
+                <div class="col-sm-1">
+                    @if (grant.ClientLogoUrl == null)
+                    {
+                        <div class="x-default-icon"></div>
+                    }
+                    else
+                    {
+                        <img src="grant.ClientLogoUrl">
+                    }
+                </div>
+                <div class="col-sm-7">
+                    <div class="client-name"><a class="x-btn x-btn-ghost">@grant.ClientName</a></div>
+                    <div class="client-descrition">这是一个用来演示OAUTH2客户端授权流程的MVC项目</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="client-date">2017年06月15日</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="client-opration x-text-align-right">
+                        <form name="form" id="permission-form" asp-action="Revoke" class="consent-form">
+                            <input type="hidden" name="clientId" value="@grant.ClientId">
+                            <a class="x-btn x-btn-ghost">取消授权</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="x-clear-both"></div>
+</div>

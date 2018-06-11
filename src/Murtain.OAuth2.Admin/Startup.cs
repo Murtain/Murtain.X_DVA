@@ -34,9 +34,8 @@ namespace Murtain.OAuth2.Admin
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
 
-                options.ClientId = "client.mvc.admin";
+                options.ClientId = "client_mvc_implicit_admin";
                 options.ClientSecret = "secret";
-
                 options.SaveTokens = true;
             });
 
@@ -63,6 +62,30 @@ namespace Murtain.OAuth2.Admin
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.Map("/admin", adminApp =>
+            {
+                //var factory = new IdentityAdminServiceFactory
+                //{
+                //    ClientService = new Registration<IClientService, InMemoryClientService>(),
+                //    IdentityResourceService = new Registration<IIdentityResourceService, InMemoryIdentityResourceService>(),
+                //    ApiResourceService = new Registration<IApiResourceService, InMemoryApiResourceService>()
+                //};
+                //var rand = new System.Random();
+                //var clients = ClientSeeder.Get(rand.Next(1000, 3000));
+
+                //var identityResources = IdentityResourceSeeder.Get(rand.Next(25));
+                //var apiResources = ApiResourceSeeder.Get(rand.Next(54));
+
+                //factory.Register(new Registration<ICollection<InMemoryClient>>(clients));
+                //factory.Register(new Registration<ICollection<InMemoryIdentityResource>>(identityResources));
+                //factory.Register(new Registration<ICollection<InMemoryApiResource>>(apiResources));
+
+                //adminApp.UseIdentityAdmin(new IdentityAdminOptions
+                //{
+                //    Factory = factory
+                //});
             });
         }
     }

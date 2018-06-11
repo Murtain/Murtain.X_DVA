@@ -1,20 +1,27 @@
-﻿using System;
+﻿
+using Murtain.OAuth2.Models.Account;
+using Murtain.OAuth2.Providers;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Murtain.OAuth2.Models.Account
+namespace Murtain.OAuth2.Models
 {
-    public class LoginViewModel : LoginInputModel
+
+    public class LoginViewModel : LoginInput
     {
-        public bool AllowRememberLogin { get; set; } = true;
-        public bool EnableLocalLogin { get; set; } = true;
+        public LoginViewModel()
+        {
+            this.ExternalProviders = new HashSet<ExternalProvider>();
+        }
+        public bool AllowRememberLogin { get; set; }
+        public bool EnableLocalLogin { get; set; }
 
         public IEnumerable<ExternalProvider> ExternalProviders { get; set; }
         public IEnumerable<ExternalProvider> VisibleExternalProviders => ExternalProviders.Where(x => !String.IsNullOrWhiteSpace(x.DisplayName));
 
         public bool IsExternalLoginOnly => EnableLocalLogin == false && ExternalProviders?.Count() == 1;
-        public string ExternalLoginScheme => IsExternalLoginOnly ? ExternalProviders?.SingleOrDefault()?.AuthenticationScheme : null;
+        public string ExternalLoginScheme => ExternalProviders?.SingleOrDefault()?.AuthenticationScheme;
     }
+
 }

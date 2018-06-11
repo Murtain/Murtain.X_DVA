@@ -104,3 +104,13 @@
         </ul>
     </div>
 </div>
+
+
+@section Scripts{
+
+    <script>
+        $.get("http://localhost:62238/sw.json", {}, function (data) {
+            alert(data);
+        }, "text");
+    </script>
+}

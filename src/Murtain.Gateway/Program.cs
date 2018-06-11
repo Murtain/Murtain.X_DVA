@@ -19,6 +19,13 @@ namespace Murtain.Gateway
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, builder) =>
+                {
+                    builder
+                    .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                    .AddJsonFile("Ocelot.json");
+                })
+                .UseUrls("http://localhost:8800")
                 .UseStartup<Startup>()
                 .Build();
     }

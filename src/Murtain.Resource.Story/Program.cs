@@ -20,6 +20,7 @@ namespace Murtain.Resource.Story
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:8802")
                 .Build();
     }
 }

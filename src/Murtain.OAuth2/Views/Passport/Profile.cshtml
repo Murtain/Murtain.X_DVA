@@ -1,0 +1,140 @@
+﻿
+@model Murtain.OAuth2.Models.Passport.ProfileViewModel
+@{
+    ViewData["Title"] = "个人信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in new string[] { "NickName", "Birthday", "Address", "Mobile", "Email" })
+{
+    <form asp-action="Property" method="post">
+        <div class="modal fade " id="modal-@item" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <input type="hidden" asp-for="Property" value="@item" />
+                        <input type="hidden" asp-for="SubjectId" value="@Model.SubjectId" />
+                        <input class="form-control x-input" placeholder="Please enter your @item" asp-for="Value" value="@Model.GetType().GetProperty(item).GetValue(Model)" />
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-link pull-right x-input-submit">确认更改</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+<div class="section x-section">
+    <h2>个人信息</h2>
+    <div class="x-detail">
+        <div class="row x-row">
+            <div class="col-md-6">
+                <h3 class="subtitle">您在网站、社区中显示的名称</h3>
+                <div class="content">
+                    <div class="text">
+                        <div class="text editable">
+                            @Model.NickName
+                        </div>
+                        <div class="edit">
+                            <div class="text">
+                                <a data-toggle="modal" data-target="#modal-NickName">更改显示名称...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="subtitle">邮箱</h3>
+                <div class="content">
+                    <div class="text editable">
+                        @(Model.Email)
+                    </div>
+                    <div class="edit">
+                        <div class="text"><a href="#" data-toggle="modal" data-target="#modal-Email">@(Model.Email == null ? "绑定邮箱..." : "更改邮箱..." )</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row x-row">
+            <div class="col-md-6">
+                <h3 class="subtitle">联系方式</h3>
+                <div class="content">
+                    <div class="text editable">
+                        @Model.Mobile
+                    </div>
+                    <div class="edit">
+                        <div class="text"><a href="#" data-toggle="modal" data-target="#modal-Mobile">更改联系方式...</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="subtitle">您的生日</h3>
+                <div class="content">
+                    <div class="text editable">
+                        @(Model.Birthday)
+                    </div>
+                    <div class="edit">
+                        <div class="text"><a data-toggle="modal" data-target="#modal-Birthday" href="#">@(Model.Email == null ? "设置您的生日..." : "更改生日..." )</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row x-row">
+            <div class="col-md-12">
+                <h3 class="subtitle">您的地址</h3>
+                <div class="content">
+                    <div class="text editable">
+                        @(Model.Address)
+                    </div>
+                    <div class="edit">
+                        <div class="text"><a href="#" data-toggle="modal" data-target="#modal-Address">@(Model.Address == null ? "填写联系地址..." : "更改联系地址..." )</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row x-row">
+            <div class="col-md-6">
+                <h3 class="subtitle">您的性别</h3>
+                <form asp-action="Property" id="form-gender" method="post">
+                    <input type="hidden" asp-for="Property" value="Gender" />
+                    <input type="hidden" asp-for="SubjectId" value="@Model.SubjectId" />
+                    <input type="hidden" asp-for="Value" id="gender" />
+                    <div class="content">
+                        <div class="text">
+                            <select id="sel-gender" class="form-control">
+                                <option selected=@(Model.Gender == "male") value="male">男</option>
+                                <option selected=@(Model.Gender == "female") value="female">女</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="x-clear-both"></div>
+</div>
+
+<div class="section x-section other ">
+    <h2>其他信息</h2>
+    <div class=" x-detail">
+        <div class="row x-row">
+            <div class="col-md-6">
+                <h3 class="subtitle">注册日期</h3>
+                <div class="content">
+                    <div class="text"><a href="#">@(Model.CreateTime.Value.Year)年@(Model.CreateTime.Value.Month)月@(Model.CreateTime.Value.Day)日</a></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="subtitle">语言</h3>
+                <div class="content">
+                    <div class="text">
+                        <select name="" id="" class="form-control">
+                            <option value="zh-CN">简体中文 - 中文（简体）</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="x-clear-both"></div>
+</div>

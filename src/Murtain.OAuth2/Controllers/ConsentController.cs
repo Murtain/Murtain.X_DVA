@@ -1,47 +1,40 @@
-﻿using IdentityServer4.Events;
-using IdentityServer4.Extensions;
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Murtain.OAuth2.Attributes;
 using Murtain.OAuth2.Configuration;
-using Murtain.OAuth2.Extensions;
-using Murtain.OAuth2.Models.Account;
-using Murtain.OAuth2.Models.Consent;
-using System;
-using System.Collections.Generic;
+using Murtain.OAuth2.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Murtain.OAuth2.Controllers
 {
-
     /// <summary>
     /// This controller processes the consent UI
     /// </summary>
     [SecurityHeaders]
-    [Authorize]
     public class ConsentController : Controller
     {
-        private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clientStore;
         private readonly IResourceStore _resourceStore;
-        private readonly IEventService _events;
-        private readonly ILogger<ConsentController> _logger;
+        private readonly IIdentityServerInteractionService _interaction;
+        private readonly ILogger _logger;
 
         public ConsentController(
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IResourceStore resourceStore,
-            IEventService events,
             ILogger<ConsentController> logger)
         {
             _interaction = interaction;
             _clientStore = clientStore;
             _resourceStore = resourceStore;
-            _events = events;
             _logger = logger;
         }
 
@@ -73,13 +66,6 @@ namespace Murtain.OAuth2.Controllers
 
             if (result.IsRedirect)
             {
-                if (await _clientStore.IsPkceClientAsync(result.ClientId))
-                {
-                    // if the client is PKCE then we assume it's native, so this change in how to
-                    // return the response is for better UX for the end user.
-                    return View("Redirect", new RedirectViewModel { RedirectUrl = result.RedirectUri });
-                }
-
                 return Redirect(result.RedirectUri);
             }
 
@@ -96,16 +82,10 @@ namespace Murtain.OAuth2.Controllers
             return View("Error");
         }
 
-        /*****************************************/
-        /* helper APIs for the ConsentController */
-        /*****************************************/
-        private async Task<ProcessConsentResult> ProcessConsent(ConsentInputModel model)
-        {
-            var result = new ProcessConsentResult();
 
-            // validate return url is still valid
-            var request = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
-            if (request == null) return result;
+        public async Task<ConsentProcessResult> ProcessConsent(ConsentInputModel model)
+        {
+            var result = new ConsentProcessResult();
 
             ConsentResponse grantedConsent = null;
 
@@ -113,9 +93,6 @@ namespace Murtain.OAuth2.Controllers
             if (model.Button == "no")
             {
                 grantedConsent = ConsentResponse.Denied;
-
-                // emit event
-                await _events.RaiseAsync(new ConsentDeniedEvent(User.GetSubjectId(), result.ClientId, request.ScopesRequested));
             }
             // user clicked 'yes' - validate the data
             else if (model.Button == "yes" && model != null)
@@ -134,9 +111,6 @@ namespace Murtain.OAuth2.Controllers
                         RememberConsent = model.RememberConsent,
                         ScopesConsented = scopes.ToArray()
                     };
-
-                    // emit event
-                    await _events.RaiseAsync(new ConsentGrantedEvent(User.GetSubjectId(), request.ClientId, request.ScopesRequested, grantedConsent.ScopesConsented, grantedConsent.RememberConsent));
                 }
                 else
                 {
@@ -150,12 +124,15 @@ namespace Murtain.OAuth2.Controllers
 
             if (grantedConsent != null)
             {
+                // validate return url is still valid
+                var request = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
+                if (request == null) return result;
+
                 // communicate outcome of consent back to identityserver
                 await _interaction.GrantConsentAsync(request, grantedConsent);
 
                 // indicate that's it ok to redirect back to authorization endpoint
                 result.RedirectUri = model.ReturnUrl;
-                result.ClientId = request.ClientId;
             }
             else
             {
@@ -166,48 +143,52 @@ namespace Murtain.OAuth2.Controllers
             return result;
         }
 
-        private async Task<ConsentViewModel> BuildViewModelAsync(string returnUrl, ConsentInputModel model = null)
+        public async Task<ConsentViewModel> BuildViewModelAsync(string returnUrl, ConsentInputModel model = null)
         {
-
             var request = await _interaction.GetAuthorizationContextAsync(returnUrl);
-            if (request == null)
+            if (request != null)
+            {
+                var client = await _clientStore.FindEnabledClientByIdAsync(request.ClientId);
+                if (client != null)
+                {
+                    var resources = await _resourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested);
+                    if (resources != null && (resources.IdentityResources.Any() || resources.ApiResources.Any()))
+                    {
+                        return CreateConsentViewModel(model, returnUrl, request, client, resources);
+                    }
+                    else
+                    {
+                        _logger.LogError("No scopes matching: {0}", request.ScopesRequested.Aggregate((x, y) => x + ", " + y));
+                    }
+                }
+                else
+                {
+                    _logger.LogError("Invalid client id: {0}", request.ClientId);
+                }
+            }
+            else
             {
                 _logger.LogError("No consent request matching request: {0}", returnUrl);
-                return null;
             }
 
-            var client = await _clientStore.FindEnabledClientByIdAsync(request.ClientId);
-            if (client == null)
-            {
-                _logger.LogError("Invalid client id: {0}", request.ClientId);
-                return null;
-            }
-
-            var resources = await _resourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested);
-            if (resources == null || (!resources.IdentityResources.Any() && !resources.ApiResources.Any()))
-            {
-                _logger.LogError("No scopes matching: {0}", request.ScopesRequested.Aggregate((x, y) => x + ", " + y));
-                return null;
-            }
-
-            return CreateConsentViewModel(model, returnUrl, request, client, resources);
-
+            return null;
         }
 
-        private ConsentViewModel CreateConsentViewModel(ConsentInputModel model, string returnUrl, AuthorizationRequest request, Client client, IdentityServer4.Models.Resources resources)
+        private ConsentViewModel CreateConsentViewModel(
+            ConsentInputModel model, string returnUrl,
+            AuthorizationRequest request,
+            Client client, Resources resources)
         {
-            var vm = new ConsentViewModel
-            {
-                RememberConsent = model?.RememberConsent ?? true,
-                ScopesConsented = model?.ScopesConsented ?? Enumerable.Empty<string>(),
+            var vm = new ConsentViewModel();
+            vm.RememberConsent = model?.RememberConsent ?? true;
+            vm.ScopesConsented = model?.ScopesConsented ?? Enumerable.Empty<string>();
 
-                ReturnUrl = returnUrl,
+            vm.ReturnUrl = returnUrl;
 
-                ClientName = client.ClientName ?? client.ClientId,
-                ClientUrl = client.ClientUri,
-                ClientLogoUrl = client.LogoUri,
-                AllowRememberConsent = client.AllowRememberConsent
-            };
+            vm.ClientName = client.ClientName ?? client.ClientId;
+            vm.ClientUrl = client.ClientUri;
+            vm.ClientLogoUrl = client.LogoUri;
+            vm.AllowRememberConsent = client.AllowRememberConsent;
 
             vm.IdentityScopes = resources.IdentityResources.Select(x => CreateScopeViewModel(x, vm.ScopesConsented.Contains(x.Name) || model == null)).ToArray();
             vm.ResourceScopes = resources.ApiResources.SelectMany(x => x.Scopes).Select(x => CreateScopeViewModel(x, vm.ScopesConsented.Contains(x.Name) || model == null)).ToArray();
@@ -221,7 +202,7 @@ namespace Murtain.OAuth2.Controllers
             return vm;
         }
 
-        private ScopeViewModel CreateScopeViewModel(IdentityResource identity, bool check)
+        public ScopeViewModel CreateScopeViewModel(IdentityResource identity, bool check)
         {
             return new ScopeViewModel
             {

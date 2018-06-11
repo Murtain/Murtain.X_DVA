@@ -6,11 +6,151 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="Logging\**" />
+    <Content Remove="Configuration\**" />
+    <Content Remove="Logging\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Logging\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="Logging\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AdminPageController.cs" />
+    <Compile Remove="Core\OwinEnvironmentService.cs" />
+    <Compile Remove="Extensions\OwinExtensions.cs" />
+    <Compile Remove="Filters\NoCacheAttribute.cs" />
+    <Compile Remove="Filters\SecurityHeadersAttribute.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\templates\apiresources\edit.html" />
+    <Content Remove="wwwroot\templates\apiresources\list.html" />
+    <Content Remove="wwwroot\templates\apiresources\new.html" />
+    <Content Remove="wwwroot\templates\clients\edit.html" />
+    <Content Remove="wwwroot\templates\clients\list.html" />
+    <Content Remove="wwwroot\templates\clients\new.html" />
+    <Content Remove="wwwroot\templates\editor\property.html" />
+    <Content Remove="wwwroot\templates\home.html" />
+    <Content Remove="wwwroot\templates\identityresources\edit.html" />
+    <Content Remove="wwwroot\templates\identityresources\list.html" />
+    <Content Remove="wwwroot\templates\identityresources\new.html" />
+    <Content Remove="wwwroot\templates\index.html" />
+    <Content Remove="wwwroot\templates\message.html" />
+    <Content Remove="wwwroot\templates\modal.html" />
+    <Content Remove="wwwroot\templates\navbar.html" />
+    <Content Remove="wwwroot\templates\pager\buttons.html" />
+    <Content Remove="wwwroot\templates\pager\summary.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.0-alpha-0001" />
+    <PackageReference Include="LibLog" Version="4.2.6" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\templates\apiresources\edit.html" />
+    <EmbeddedResource Include="wwwroot\templates\apiresources\list.html" />
+    <EmbeddedResource Include="wwwroot\templates\apiresources\new.html" />
+    <EmbeddedResource Include="wwwroot\templates\clients\edit.html" />
+    <EmbeddedResource Include="wwwroot\templates\clients\list.html" />
+    <EmbeddedResource Include="wwwroot\templates\clients\new.html" />
+    <EmbeddedResource Include="wwwroot\templates\editor\property.html" />
+    <EmbeddedResource Include="wwwroot\templates\home.html" />
+    <EmbeddedResource Include="wwwroot\templates\identityresources\edit.html" />
+    <EmbeddedResource Include="wwwroot\templates\identityresources\list.html" />
+    <EmbeddedResource Include="wwwroot\templates\identityresources\new.html" />
+    <EmbeddedResource Include="wwwroot\templates\index.html" />
+    <EmbeddedResource Include="wwwroot\templates\message.html" />
+    <EmbeddedResource Include="wwwroot\templates\modal.html" />
+    <EmbeddedResource Include="wwwroot\templates\navbar.html" />
+    <EmbeddedResource Include="wwwroot\templates\pager\buttons.html" />
+    <EmbeddedResource Include="wwwroot\templates\pager\summary.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Filters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap\.csslintrc" />
+    <None Include="wwwroot\css\bootstrap\alerts.less" />
+    <None Include="wwwroot\css\bootstrap\badges.less" />
+    <None Include="wwwroot\css\bootstrap\bootstrap.less" />
+    <None Include="wwwroot\css\bootstrap\breadcrumbs.less" />
+    <None Include="wwwroot\css\bootstrap\button-groups.less" />
+    <None Include="wwwroot\css\bootstrap\buttons.less" />
+    <None Include="wwwroot\css\bootstrap\carousel.less" />
+    <None Include="wwwroot\css\bootstrap\close.less" />
+    <None Include="wwwroot\css\bootstrap\code.less" />
+    <None Include="wwwroot\css\bootstrap\component-animations.less" />
+    <None Include="wwwroot\css\bootstrap\dropdowns.less" />
+    <None Include="wwwroot\css\bootstrap\forms.less" />
+    <None Include="wwwroot\css\bootstrap\glyphicons.less" />
+    <None Include="wwwroot\css\bootstrap\grid.less" />
+    <None Include="wwwroot\css\bootstrap\input-groups.less" />
+    <None Include="wwwroot\css\bootstrap\jumbotron.less" />
+    <None Include="wwwroot\css\bootstrap\labels.less" />
+    <None Include="wwwroot\css\bootstrap\list-group.less" />
+    <None Include="wwwroot\css\bootstrap\media.less" />
+    <None Include="wwwroot\css\bootstrap\mixins.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\alerts.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\background-variant.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\border-radius.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\buttons.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\center-block.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\clearfix.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\forms.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\gradients.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\grid-framework.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\grid.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\hide-text.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\image.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\labels.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\list-group.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\nav-divider.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\nav-vertical-align.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\opacity.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\pagination.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\panels.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\progress-bar.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\reset-filter.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\reset-text.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\resize.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\responsive-visibility.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\size.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\tab-focus.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\table-row.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\text-emphasis.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\text-overflow.less" />
+    <None Include="wwwroot\css\bootstrap\mixins\vendor-prefixes.less" />
+    <None Include="wwwroot\css\bootstrap\modals.less" />
+    <None Include="wwwroot\css\bootstrap\navbar.less" />
+    <None Include="wwwroot\css\bootstrap\navs.less" />
+    <None Include="wwwroot\css\bootstrap\normalize.less" />
+    <None Include="wwwroot\css\bootstrap\pager.less" />
+    <None Include="wwwroot\css\bootstrap\pagination.less" />
+    <None Include="wwwroot\css\bootstrap\panels.less" />
+    <None Include="wwwroot\css\bootstrap\popovers.less" />
+    <None Include="wwwroot\css\bootstrap\print.less" />
+    <None Include="wwwroot\css\bootstrap\progress-bars.less" />
+    <None Include="wwwroot\css\bootstrap\responsive-embed.less" />
+    <None Include="wwwroot\css\bootstrap\responsive-utilities.less" />
+    <None Include="wwwroot\css\bootstrap\scaffolding.less" />
+    <None Include="wwwroot\css\bootstrap\tables.less" />
+    <None Include="wwwroot\css\bootstrap\theme.less" />
+    <None Include="wwwroot\css\bootstrap\thumbnails.less" />
+    <None Include="wwwroot\css\bootstrap\tooltip.less" />
+    <None Include="wwwroot\css\bootstrap\type.less" />
+    <None Include="wwwroot\css\bootstrap\utilities.less" />
+    <None Include="wwwroot\css\bootstrap\variables.less" />
+    <None Include="wwwroot\css\bootstrap\wells.less" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Murtain.Consul.ServiceDiscovery;
 
 namespace Murtain.Resource.Message
 {
@@ -24,6 +25,7 @@ namespace Murtain.Resource.Message
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddServiceDiscovery(Configuration.GetSection("ServiceDiscovery"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +37,8 @@ namespace Murtain.Resource.Message
             }
 
             app.UseMvc();
+            // Autoregister using server.Features(does not work in reverse proxy mode)
+            app.UseConsulRegisterService();
         }
     }
 }

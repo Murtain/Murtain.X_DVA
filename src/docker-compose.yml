@@ -69,3 +69,15 @@ services:
       context: .
       dockerfile: ../WebApplication1/Dockerfile
 
+
+  dora.tt:
+    image: dora.tt
+    build:
+      context: ./../Dora.TT
+      dockerfile: Dockerfile
+
+  murtain.resource.descovery:
+    image: murtain.resource.descovery
+    build:
+      context: ./../Murtain.Resource.Descovery
+      dockerfile: Dockerfile

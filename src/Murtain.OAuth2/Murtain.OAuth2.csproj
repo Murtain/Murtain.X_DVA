@@ -2,28 +2,93 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <UserSecretsId>aspnet-Murtain.OAuth2-F10D7207-981A-4C30-A6EB-F5CAFE34424C</UserSecretsId>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
-
   <ItemGroup>
-    <PackageReference Include="IdentityServer4" Version="2.2.0" />
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
-    <PackageReference Include="MySql.Data" Version="8.0.11" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.1" />
+    <Compile Remove="Application\Profile\**" />
+    <Compile Remove="Application\User\**" />
+    <Compile Remove="Application\Validations\**" />
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="Core\**" />
+    <Compile Remove="Infrastructure\Repositories\**" />
+    <Compile Remove="SDK\**" />
+    <Content Remove="Application\Profile\**" />
+    <Content Remove="Application\User\**" />
+    <Content Remove="Application\Validations\**" />
+    <Content Remove="Configuration\**" />
+    <Content Remove="Core\**" />
+    <Content Remove="Infrastructure\Repositories\**" />
+    <Content Remove="SDK\**" />
+    <EmbeddedResource Remove="Application\Profile\**" />
+    <EmbeddedResource Remove="Application\User\**" />
+    <EmbeddedResource Remove="Application\Validations\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Core\**" />
+    <EmbeddedResource Remove="Infrastructure\Repositories\**" />
+    <EmbeddedResource Remove="SDK\**" />
+    <None Remove="Application\Profile\**" />
+    <None Remove="Application\User\**" />
+    <None Remove="Application\Validations\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="Core\**" />
+    <None Remove="Infrastructure\Repositories\**" />
+    <None Remove="SDK\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <Compile Include="Configuration\TestUsers.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dora.Interception" Version="2.0.0" />
+    <PackageReference Include="FluentValidation" Version="7.6.100" />
+    <PackageReference Include="IdentityServer4" Version="2.2.0" />
+    <PackageReference Include="IdentityServer4.EntityFramework" Version="2.1.1" />
+    <PackageReference Include="MediatR" Version="5.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
+    <ProjectReference Include="..\Murtain.Extensions.Domain\Murtain.Extensions.Domain.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.Gemini\Murtain.Extensions.Gemini.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\Events\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Account\LoggedOut.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Logout.cshtml" />
+    <None Include="Views\Account\Password.cshtml" />
+    <None Include="Views\Account\ValidateCaptcha.cshtml" />
+    <None Include="Views\Account\ValidateID.cshtml" />
+    <None Include="Views\Consent\Index.cshtml" />
+    <None Include="Views\Consent\_ScopeListItem.cshtml" />
+    <None Include="Views\Grants\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Passport\Index.cshtml" />
+    <None Include="Views\Passport\Profile.cshtml" />
+    <None Include="Views\Passport\Security.cshtml" />
+    <None Include="Views\Passport\Support.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_Layout_Login.cshtml" />
+    <None Include="Views\Shared\_Partial_Layout_Footer.cshtml" />
+    <None Include="Views\Shared\_Partial_Layout_NavcationBar.cshtml" />
+    <None Include="Views\Shared\_ValidationSummary.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Murtain.OAuth2.Models.Consent
+namespace Murtain.OAuth2.Models
 {
     public class ConsentViewModel : ConsentInputModel
     {
-
         public string ClientName { get; set; }
         public string ClientUrl { get; set; }
         public string ClientLogoUrl { get; set; }

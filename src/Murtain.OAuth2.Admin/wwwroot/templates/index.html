@@ -1,0 +1,54 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>IdentityAdmin</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link href="~/css/Bootstrap.css" rel="stylesheet" />
+
+    <script src="/libs/jquery/dist/jquery.js"></script>
+    <script src="/libs/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/libs/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="/libs/angular.min.js"></script>
+    <script src="/libs/angular-route.min.js"></script>
+    <script src="/libs/sha.js"></script>
+    <script src="/libs/sha1.js"></script>
+    <script src="/libs/sha256.js"></script>
+    <script src="/libs/sha512.js"></script>
+    <script src="/libs/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="/libs/ui-bootstrap-custom-tpls-0.14.3.min.js"></script>
+    <script src="/libs/oidc-token-manager.min.js"></script>
+    <script src="/libs/moment.js"></script>
+</head>
+<body lang="en" ng-app="ttidAdmApp" ng-csp ng-controller="LayoutCtrl" ng-cloak>
+    <span ng-include="'/templates/navbar.html'"></span>
+    <div class="side-body">
+        <ng-view tt-focus></ng-view>
+    </div>
+
+    <script id="model" type="application/json">
+        {
+        "PathBase" : "http://localhost:5001/",
+        "ShowLoginButton" : false,
+        "SiteName" :"Admini",
+        "oauthSettings":
+        {
+        "authorization_endpoint" :"http://localhost:5000/connect/authorize",
+        "client_id" : "javascript_oidc_client_identity_admin",
+        "redirect_uri": "http://localhost:5001/",
+        "scope":"openid profile"
+        }
+        }
+    </script>
+    <script src="/js/app/ttidAdm.js"></script>
+    <script src="/js/app/ttidAdmUI.js"></script>
+    <script src="/js/app/ttidAdmApp.js"></script>
+    <script src="/js/app/ttidAdmApiResources.js"></script>
+    <script src="/js/app/ttidAdmClients.js"></script>
+    <script src="/js/app/ttidAdmIdentityResources.js"></script>
+</body>
+</html>

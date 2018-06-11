@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Murtain.Extensions.AutoMapper\Murtain.Extensions.AutoMapper.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.Caching\Murtain.Extensions.Caching.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.Dependency\Murtain.Extensions.Dependency.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.Logging\Murtain.Extensions.Logging.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.Polly\Murtain.Extensions.Polly.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.ServiceDiscovery\Murtain.Extensions.ServiceDiscovery.csproj" />
+    <ProjectReference Include="..\Murtain.Extensions.Settings\Murtain.Extensions.Settings.csproj" />
+  </ItemGroup>
+
+</Project>

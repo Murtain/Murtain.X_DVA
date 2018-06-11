@@ -1,51 +1,71 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Murtain.OAuth2</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self' http://localhost:5000/">
+    <title>@ViewData["Title"]</title>
+    <meta name="keywords" content="科技新闻, 移动互联网, 资讯平台, 开放日, 互联网创业" />
+    <meta name="description" content="一个关注互联网的科技博客" />
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+
+        <link rel="stylesheet" href="~/lib/animate/animate.min.css" />
+        <link rel="stylesheet" href="~/lib/loading-bar/loading-bar.min.css" />
+        <link rel="stylesheet" href="~/css/font.css?v=1.2" />
+        <link rel="stylesheet" href="~/css/index.css">
+        <link rel="stylesheet" href="~/css/passport-c.css">
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+        <link rel="stylesheet" href="~/lib/animate/animate.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/loading-bar/loading-bar.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/font.css?v=1.2" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/passport-c.css" asp-append-version="true" />
     </environment>
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Murtain.OAuth2</a>
+    <div class="x-backgroud">
+        <div class='x-backgroud-frosted-glass'></div>
+        <div class="x-welcome">
+            <div class="x-welcome-text-container">
+                <div class="x-welcome-text">
+                    <img class="pull-left img-circle x-avatar" height="64" src="~/images/205959f1439c148108.jpg" />
+                    <h3 class="pull-left">@(User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Name)?.Value)</h3>
+                    <div class="clearfix"></div>
+                    <br />
+                    <p>您的 账户ID 是 @(User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)</p>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
-            </div>
+            <a class="x-welcome-logout x-btn" asp-action="logout" asp-controller="account">注销</a>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Murtain.OAuth2</p>
-        </footer>
     </div>
-
+    <div class="x-nav">
+        <div class="x-nav-box">
+            <ul class="pull-left">
+                <li class="x-nav-avatar">
+                    @*<img src="~/images/205959f1439c148108.jpg" />*@
+                </li>
+                <li class="x-nav-brand"></li>
+            </ul>
+            <ul class="pull-right">
+                <li class="active"><a href="/passport/profile">个人信息</a></li>
+                <li><a href="/passport/security">账号安全</a></li>
+                <li><a href="/grants">应用授权</a></li>
+                <li><a href="/passport/support">技术支持</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="x-container x-block">
+        @RenderBody()
+    </div>
+    @Html.Partial("_Partial_Layout_Footer")
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

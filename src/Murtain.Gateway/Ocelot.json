@@ -1,0 +1,55 @@
+﻿{
+  "ReRoutes": [
+    {
+      //"DownstreamPathTemplate": "/api/users",
+      //"DownstreamScheme": "http",
+      //"DownstreamHostAndPorts": [
+      //  {
+      //    "Host": "localhost",
+      //    "Port": 8801
+      //  }
+      //],
+      //"UpstreamPathTemplate": "/api/users",
+      //"UpstreamHttpMethod": [
+      //  "Get"
+      //],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Gateway",
+      //  "AllowedScopes": []
+      //},
+
+      "DownstreamPathTemplate": "/api/users",
+      "UpstreamPathTemplate": "/users",
+      "UpstreamHttpMethod": [l
+        "Get"
+      ],
+      "DownstreamScheme": "http",
+      "ServiceName": "X-USERS",
+      "UseServiceDiscovery": true
+    }
+    //,
+    //{
+    //  "DownstreamPathTemplate": "/api/stories",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 8802
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/api/stories",
+    //  "UpstreamHttpMethod": [
+    //    "Get"
+    //  ]
+    //}
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8800",
+    "RequestIdKey": "OcRequestId",
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500
+      //"Type": "ServiceFabric"
+    }
+  }
+}

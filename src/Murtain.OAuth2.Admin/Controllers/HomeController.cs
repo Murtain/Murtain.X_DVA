@@ -15,6 +15,7 @@ namespace Murtain.OAuth2.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+            //return new EmbeddedHtmlResult(Request, "Murtain.OAuth2.Admin.wwwroot.templates.index.html");
         }
 
         public IActionResult About()

@@ -1,41 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Murtain.OAuth2.Models;
+﻿using IdentityModel.Client;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Murtain.OAuth2.Attributes;
 using Murtain.OAuth2.Configuration;
+using Murtain.OAuth2.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace Murtain.OAuth2.Controllers
+namespace Murtain.OAuth2.Web.Controllers
 {
     [SecurityHeaders]
-    [Authorize]
     public class HomeController : Controller
     {
+        private readonly IIdentityServerInteractionService identityServerInteractionService;
+
+        private readonly ILogger logger;
+
+        public HomeController(IIdentityServerInteractionService identityServerInteractionService, ILogger<HomeController> logger)
+        {
+            this.identityServerInteractionService = identityServerInteractionService;
+            this.logger = logger;
+        }
+
         public IActionResult Index()
         {
+            logger.LogInformation("home Index ...");
             return View();
         }
 
-        public IActionResult About()
+        /// <summary>
+        /// Render the error page
+        /// </summary>
+        public async Task<IActionResult> Error(string errorId)
         {
-            ViewData["Message"] = "Your application description page.";
+            var vm = new ErrorViewModel();
 
-            return View();
-        }
+            // retrieve error details from identityserver
+            var message = await identityServerInteractionService.GetErrorContextAsync(errorId);
+            if (message != null)
+            {
+                vm.Error = message;
+            }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("Error", vm);
         }
     }
+
 }

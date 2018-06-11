@@ -69,3 +69,15 @@ services:
     ports:
       - "80"
 
+
+  dora.tt:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+  murtain.resource.descovery:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
